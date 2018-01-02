@@ -12,9 +12,6 @@ const reduceFastlyRealtimeResponse = res => res.Data.reduce((carry, item) => {
   return carry
 }, {})
 
-// const reduceFastlyResponse = res => {
-// }
-
 const toPrometheusMetrics = metrics => {
 
   const registry = new Registry()
@@ -26,7 +23,11 @@ const toPrometheusMetrics = metrics => {
       }
 
       default: {
-        const gauge = new Gauge({ name: key, help: key })
+        const gauge = new Gauge({
+          name: key,
+          help: key,
+          registers: [registry]
+        })
         gauge.set(metrics[key])
         registry.registerMetric(gauge)
         break
