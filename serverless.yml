@@ -1,0 +1,27 @@
+service: fastly-exporter
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ${opt:region, 'eu-west-1'}
+  stage: ${opt:stage, 'dev'}
+  environment:
+    FASTLY_TOKEN: ${env:FASTLY_TOKEN}
+    FASTLY_SERVICE: ${env:FASTLY_SERVICE}
+
+functions:
+  metrics:
+    handler: index.metrics
+    events:
+      - http:
+          path: metrics
+          method: get
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 4000

@@ -1,0 +1,16 @@
+{
+  "name": "fastly_exporter",
+  "version": "1.0.0",
+  "description": "A Prometheus Exporter for grabbing metrics from Fastly.",
+  "private": true,
+  "author": "Alex Wilson <a@ax.gy>",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^1.7.3",
+    "prom-client": "^10.2.2"
+  },
+  "devDependencies": {
+    "serverless": "^1.25.0",
+    "serverless-offline": "^3.16.0"
+  }
+}
